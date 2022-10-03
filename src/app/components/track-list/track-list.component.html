@@ -1,0 +1,35 @@
+<table class="table table-sm table-light table-striped" *ngIf="tracks">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Track</th>
+			<th scope="col">Duration</th>
+			<!--TODO: Use *ngIf to hide if hideArtist is true-->
+			<th scope="col" *ngIf="!hideArtist">Primary Artist</th>
+			<th scope="col" *ngIf="hideArtist"></th>
+			<!--TODO: Use *ngIf to hide if hideAlbum is true-->
+			<th scope="col" *ngIf="!hideAlbum">Album</th>
+			<th scope="col" *ngIf="hideAlbum"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<!--TODO: Use *ngFor to loop over tracks-->
+		<tr *ngFor="let x of tracks; let i=index">
+			<!--TODO: Populate with row index (start with 1!)-->
+			<td>{{i+1}}</td>
+			<td>
+				<!--TODO: link to the endpoint for that track, display the track's name-->
+				<a style="text-decoration:none" href="{{x.category}}/{{x.id}}">{{x.name}}</a>
+			</td>
+			<!--TODO: display the track's duration-->
+			<td>{{x.durationStr}}</td>
+			<!--TODO: Use *ngIf to hide if hideArtist is true; link to the first artist's endpoint and display the first artist's name-->
+			<td *ngIf="!hideArtist"><a style="text-decoration:none" href="/artist/{{x.artists[0].id}}">{{x.artists[0].name}}</a></td>
+			<td *ngIf="hideArtist"></td>
+			<!--TODO: Use *ngIf to hide if hideAlbum is true; link to the album's endpoint and display the album's name-->
+			<td *ngIf="!hideAlbum"><a style="text-decoration:none" href="/album/{{x.album.id}}">{{x.album.name}}</a></td>
+			<td *ngIf="hideAlbum"></td>
+			
+		</tr>
+	</tbody>
+</table>
